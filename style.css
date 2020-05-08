@@ -14,9 +14,17 @@ body {
     display: flex;
 }
 
+.box-wrapper::before {
+    background-color: #009688;
+    height: 127px;
+    width: 100%;
+    content: "";
+    position: absolute;
+}
+
 .content-wrapper {
     width: 70%;
-    height: 95vh;
+    height: 90vh;
     margin: auto;
     background-color: white;
     z-index: 1;
@@ -25,21 +33,141 @@ body {
 .chat-list {
     width: 35%;
     height: 100%;
-    border: 1px solid black;
     float: left;
+    /* background: #eaeaea; */
 }
 
 .chat {
     width: 65%;
     height: 100%;
-    border: 1px solid black;
     float: left;
 }
 
-.box-wrapper::before {
-    background-color: #358675;
-    height: 127px;
+.header-chat {
+    border-left: 1px solid #d5d5d5;
+}
+
+.nav {
     width: 100%;
-    content: "";
+    height: 60px;
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img-profile {
+    display: flex;
+    margin: 0 20px;
+}
+
+.img-profile img {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+}
+
+.right i, .navbar i {
+    margin-right: 20px;
+    color: #b1b1b1;
+    font-size: 20px;
+}
+
+.notifications {
+    height: 80px;
+    background-color: #8edafc;
+    display: flex;
+    align-items: center;
+}
+
+.status {
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+.info-contact {
+    display: flex;
+    align-items: center;
+}
+
+.alert i {
+    margin: 0 20px;
+    font-size: 25px;
+    color: #8edafc;
+}
+
+.circle {
+    background: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert {
+    margin: 0 20px;
+}
+
+a {
+    color: darkslategrey;
+    font-size: 15px;
+}
+
+.search {
+    background: white;
+    border-radius: 50px;
+    padding: 0 10px;
+    margin: 0 10px;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.conversation-preview {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.data-contact {
+    position: relative;
+    width: 100%;
+}
+
+.time-last-message {
     position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+span.time {
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+.active {
+    background: #eaeaea;
+}
+
+.list-conversation {
+    height: calc(100% - 165px);
+    overflow-y: scroll;
+}
+
+.conversation {
+    background-image: url(img/sfondo-chat.jpg);
+    height: calc(100% - 120px);
+    background-size: contain;
+}
+
+.footer-chat {
+    height: 60px;
 }
