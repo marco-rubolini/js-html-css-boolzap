@@ -3,3 +3,43 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    font-family: sans-serif;
+    background-color: #d2d4c9;
+}
+
+.box-wrapper {
+    height: 100vh;
+    display: flex;
+}
+
+.content-wrapper {
+    width: 70%;
+    height: 95vh;
+    margin: auto;
+    background-color: white;
+    z-index: 1;
+}
+
+.chat-list {
+    width: 35%;
+    height: 100%;
+    border: 1px solid black;
+    float: left;
+}
+
+.chat {
+    width: 65%;
+    height: 100%;
+    border: 1px solid black;
+    float: left;
+}
+
+.box-wrapper::before {
+    background-color: #358675;
+    height: 127px;
+    width: 100%;
+    content: "";
+    position: absolute;
+}
