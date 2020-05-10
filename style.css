@@ -182,6 +182,8 @@ span.time {
     background-image: url(img/sfondo-chat.jpg);
     height: calc(100% - 120px);
     background-size: contain;
+    padding: 20px 40px;
+    overflow-y: scroll;
 }
 
 .footer-chat {
@@ -219,4 +221,18 @@ span.time {
 
 .conversation-preview .img-profile {
     background: #eaeaea;
+}
+
+.message {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    float: left;
+    clear: both;
+}
+
+.reply {
+    float: right;
+    background: #dcf8c6;
+
 }
