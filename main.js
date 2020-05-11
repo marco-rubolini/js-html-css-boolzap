@@ -1,6 +1,14 @@
 // intercetto il click dell'utente
-$('.fa-microphone').click(function(){
-    //leggo il testo inserito dall'utente
+$('.fa-microphone').on("click", inviaMessaggio);
+
+$('#content-message').keypress(function(e){
+    if (e.which == 13) {
+        inviaMessaggio();
+    }
+});
+
+
+function inviaMessaggio (){
     var contentMessage = $('#content-message').val();
 
     // copio l'elemento template
@@ -13,15 +21,5 @@ $('.fa-microphone').click(function(){
     // appendo il nuovo messaggio
     $('.conversation').append(message);
 
-
-
-});
-
-
-// Inserisco in una variabile il messaggio dell'utente
-//
-// copio il template
-//
-// trova l'elemento con la classe .text e aggiungi il messaggio utente
-//
-// inserisci all'interno della chat il template
+    $("#content-message").val("");
+};
