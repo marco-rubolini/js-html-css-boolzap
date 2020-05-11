@@ -227,12 +227,22 @@ span.time {
     background: white;
     padding: 20px;
     border-radius: 20px;
-    float: left;
+    /* float: left; */
     clear: both;
+    margin: 10px 0;
+}
+
+.send {
+    float: left;
+    background: white;
 }
 
 .reply {
     float: right;
     background: #dcf8c6;
 
+}
+
+.template-message {
+    display: none;
 }
