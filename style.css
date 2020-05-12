@@ -225,19 +225,19 @@ span.time {
 
 .message {
     background: white;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 10px;
+    border-radius: 10px;
     /* float: left; */
     clear: both;
     margin: 10px 0;
 }
 
-.send {
+.reply {
     float: left;
     background: white;
 }
 
-.reply {
+.send {
     float: right;
     background: #dcf8c6;
 
