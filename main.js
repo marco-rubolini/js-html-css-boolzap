@@ -66,14 +66,14 @@ function risposta (){
 
 function cercaContatto (){
     // recupero il testo dell'utente
-    var testoUtente = $('#text-search').val().trim();
+    var testoUtente = $('#text-search').val().trim().toLowerCase();
     // verifico se l'utente ha digitato qualcosa
     if (testoUtente != '') {
         // L'utente sta cercando un nome
         // per ogni elemento della lista verifico se il suo testo è uguale al testo inserito dell'utente
         $('.conversation-preview').each(function(){
             // recupero il nome dei contatti
-            var contatti = $(this).find('.data-contact p').text().trim();
+            var contatti = $(this).find('.data-contact p').text().trim().toLowerCase();
             // se il testo inserito dall'utente è incluso nei nomi dei contatti
             if (contatti.includes(testoUtente)) {
                 //visualizza la conversazione
