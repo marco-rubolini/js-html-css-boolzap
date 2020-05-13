@@ -90,6 +90,7 @@ body {
 .footer-chat i {
     color: #6b7074;
     font-size: 20px;
+    cursor: pointer;
 }
 .notifications {
     height: 80px;
@@ -151,6 +152,7 @@ input:focus {
     align-items: center;
     padding: 10px 0;
     background: white;
+    cursor: pointer;
 }
 
 .data-contact {
@@ -230,8 +232,12 @@ span.time {
     /* float: left; */
     clear: both;
     margin: 10px 0;
+    position: relative;
 }
 
+.text {
+    margin-right: 15px;
+}
 .reply {
     float: left;
     background: white;
@@ -253,4 +259,34 @@ span.time {
 
 .conversation {
     display: none;
+}
+
+.message.send i{
+    position: absolute;
+    right: 5px;;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    cursor: pointer;
+}
+
+.message.send:hover i {
+    display: block;
+}
+
+.dropdown {
+    background: white;
+    display: none;
+    position: absolute;
+    top: 75%;
+    right: 0;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.30), 0 2px 6px 2px rgba(60,64,67,.15);
+
+}
+
+.dropdown ul li {
+    display: inline-block;
+    padding: 15px;
+    width: max-content;
+    cursor: pointer;
 }
