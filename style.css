@@ -68,7 +68,7 @@ body {
     object-fit: contain;
 }
 
-.nav .img-profile img, .conversation-preview.active .img-profile img {
+.nav .img-profile img, .img-profile img {
     background: white;
 }
 
@@ -169,7 +169,7 @@ span.time {
     color: #b1b1b1;
 }
 
-.active {
+.conversation-preview.active {
     background: #eaeaea;
 }
 
@@ -244,5 +244,13 @@ span.time {
 }
 
 .template-message {
+    display: none;
+}
+
+.conversation.visible {
+    display: block;
+}
+
+.conversation {
     display: none;
 }

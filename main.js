@@ -11,12 +11,12 @@ $('#content-message').keypress(function(event){
     }
 });
 // intercetto il pulsante invio della tastiera
-$('#text-search').keypress(function(event){
-    // se si preme invio
-    if (event.which == 13) {
+$('#text-search').keyup(function(){
+    // // se si preme invio
+    // if (event.which == 13) {
         // eseguo la funzione cerca contatto
         cercaContatto();
-    }
+
 });
 
 // Cerca nome contatto
@@ -24,6 +24,32 @@ $('#text-search').keypress(function(event){
 // intercetto il click dell'utente sul pulsante ricerca ed eseguo la funzione cerca contatto
 
 $('.search i').click(cercaContatto);
+
+
+//Click sul contatto​ mostra la conversazione del contatto cliccato, è possibile inserire nuovi messaggi per ogni conversazione
+
+// intercetto il click sul contatto
+$('.conversation-preview').click(function(){
+    // rimuovo da tutte le conversazioni la classe active
+    $('.conversation-preview').removeClass('active');
+
+    // aggiungo la classe active alla conversazione cliccata
+    $(this).addClass('active');
+    // recupero il nome del contatto
+    var nomeContatto = $(this).find('p').text();
+    console.log(nomeContatto);
+    // sostituisco il nome del contatto nella conversazione con il contatto dell'anteprima conversazione cliccato
+    $('.info-contact .data-contact p').text(nomeContatto);
+    // recupero la foto profilo del contatto
+    var fotoContatto = $(this).find('img').attr('src');
+    console.log('indirizzo foto contatto' + fotoContatto);
+    // sostituisco la foto profilo in chat
+    $('.info-contact .img-profile img').attr('src', fotoContatto);
+    // nascondo tutte le chat attive
+    $('.conversation').removeClass('visible');
+    // visualizzo solo la chat corrispondente alla conversazione cliccata
+    $('.conversation[data-contact-chat="' + nomeContatto +'"]').addClass('visible');
+})
 
 
 // funzione invia messaggio utente
@@ -41,7 +67,7 @@ function inviaMessaggio (){
         message.find('.text').text(contentMessage);
 
         // appendo il nuovo messaggio
-        $('.conversation').append(message);
+        $('.conversation.visible').append(message);
         // svuoto l'input dopo aver inviato il messaggio
         $("#content-message").val("");
         // Imposto una risposta automatica dopo 1 secondo
@@ -58,7 +84,7 @@ function risposta (){
     // trovo l'elemento con la classe text e ci inserisco la risposta
     message.find('.text').text(risposta);
     // appendo la risposta
-    $('.conversation').append(message);
+    $('.conversation.visible').append(message);
 };
 
 
