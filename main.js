@@ -1,4 +1,4 @@
-// $(document).ready(function(){
+$(document).ready(function(){
 
 // intercetto il click dell'utente ed eseguo la funzione invia messaggio
 $('.fa-microphone').on("click", inviaMessaggio);
@@ -51,6 +51,12 @@ $('.conversation-preview').click(function(){
     $('.conversation').removeClass('visible');
     // visualizzo solo la chat corrispondente alla conversazione cliccata
     $('.conversation[data-contact-chat="' + nomeContatto +'"]').addClass('visible');
+    $('.conversation.visible').on('click', '.message.send i', function(){
+        $(this).next('.dropdown').toggle();
+        $(this).next('.dropdown').find('li').click(function(){
+            $(this).parents('.message.send').remove();
+        })
+    })
 })
 
 
@@ -128,4 +134,4 @@ function cercaContatto (){
 }
 
 
-// });
+});
