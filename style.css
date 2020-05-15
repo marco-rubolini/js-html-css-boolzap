@@ -261,7 +261,7 @@ span.time {
     display: none;
 }
 
-.message.send i{
+.message i{
     position: absolute;
     right: 5px;;
     top: 50%;
@@ -270,7 +270,7 @@ span.time {
     cursor: pointer;
 }
 
-.message.send:hover i {
+.message:hover i {
     display: block;
 }
 
@@ -279,9 +279,17 @@ span.time {
     display: none;
     position: absolute;
     top: 75%;
-    right: 0;
+    /* right: 0; */
     box-shadow: 0 1px 2px 0 rgba(60,64,67,.30), 0 2px 6px 2px rgba(60,64,67,.15);
+    z-index: 10;
+}
 
+.left {
+    right: 0;
+}
+
+.right {
+    left: 0;
 }
 
 .dropdown ul li {
@@ -289,4 +297,14 @@ span.time {
     padding: 15px;
     width: max-content;
     cursor: pointer;
+}
+
+.conversation-preview:hover {
+    background: #eaeaea;
+}
+
+#time {
+    float: left;
+    font-size: 10px;
+    color: grey;
 }

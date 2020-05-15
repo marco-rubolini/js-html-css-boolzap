@@ -1,5 +1,7 @@
 // $(document).ready(function(){
 
+// Invio messaggi al click dell'utente nel pulsante invia ( microfono )
+
 // intercetto il click dell'utente ed eseguo la funzione invia messaggio
 $('.fa-microphone').on("click", inviaMessaggio);
 
@@ -14,11 +16,11 @@ $('#content-message').keypress(function(event){
 });
 // intercetto il pulsante invio della tastiera
 $('#text-search').keyup(function(){
-    // // se si preme invio
-    // if (event.which == 13) {
+    // se si preme invio
+    if (event.which == 13) {
         // eseguo la funzione cerca contatto
         cercaContatto();
-
+    }
 });
 
 // Cerca nome contatto
@@ -51,20 +53,28 @@ $('.conversation-preview').click(function(){
     $('.conversation').removeClass('visible');
     // visualizzo solo la chat corrispondente alla conversazione cliccata
     $('.conversation[data-contact-chat="' + nomeContatto +'"]').addClass('visible');
+    // var time = message.last().find('#span').text();
+
+
 })
 
 
 // menu dropdown sul messaggio inviato
 
-$('.conversation').on('click', '.message.send i', function(){
+$('.conversation').on('click', '.fa-chevron-down', function(){
     $(this).next('.dropdown').toggle();
-    var visibile = $(this).hasClass('visible');
-    if ( visible = true) {
-        $(this).next('.dropdown').find('li').click(function(){
-            $(this).parents('.message.send').remove();
-        })
-    }
+    // var visibile = $(this).hasClass('visible');
+    // if ( visible = true) {
+    //     $(this).next('.dropdown').find('li').click(function(){
+    //         $(this).parents('.message.send').remove();
+    //     })
+    // }
 })
+
+// cancella messaggio chat
+$('.conversation').on('click', '#delete-message', function(){
+            $(this).closest('.message').remove();
+        })
 
 
 // funzione invia messaggio utente
@@ -75,18 +85,24 @@ function inviaMessaggio (){
     // se il testo inserito non è vuoto
     if (contentMessage.trim() != '') {
         // copio l'elemento template
-        var message = $('.template-message .message.send').clone();
-
+        // var message = $('.template-message .message.send').clone();
+        var message = $('.template-message .message').clone().addClass('send');
         // inserisco il testo inserito nell'input dall'utente
 
         message.find('.text').text(contentMessage);
 
         // appendo il nuovo messaggio
         $('.conversation.visible').append(message);
+        message.find('.dropdown').addClass('left');
         // svuoto l'input dopo aver inviato il messaggio
         $("#content-message").val("");
         // Imposto una risposta automatica dopo 1 secondo
         setTimeout(risposta, 1000);
+        // Imposto lo scroll automatico alla conversazione attiva
+        $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
+        // $('.conversation.visible').scrollTop(10000000)
+        timechat(message);
+
     };
 };
 
@@ -95,11 +111,19 @@ function risposta (){
     // creo una variabile risposta con il testo ok
     var risposta = "ok";
     // copio l'elemento messaggio di risposta dal template
-    var message = $('.template-message .message.reply').clone();
+    var message = $('.template-message .message').clone().addClass('reply');
     // trovo l'elemento con la classe text e ci inserisco la risposta
     message.find('.text').text(risposta);
     // appendo la risposta
     $('.conversation.visible').append(message);
+    message.find('.dropdown').addClass('right');
+    // Imposto lo scroll automatico alla conversazione attiva
+    $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
+    // $('.conversation.visible').scrollTop(10000000)
+    timechat(message);
+    // $('.conversation.visible').prev('.header-chat').find('.status').text('Online');
+
+
 };
 
 
@@ -130,5 +154,12 @@ function cercaContatto (){
     }
 }
 
+// Funzione ora esatta invio messaggio
+
+function timechat (message){
+    var data = new Date($.now());
+    var time = data.getHours() + ":" + data.getMinutes();
+    message.last().find('#time').text(time);
+}
 
 // });
