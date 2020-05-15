@@ -55,7 +55,6 @@ $('.conversation-preview').click(function(){
     $('.conversation[data-contact-chat="' + nomeContatto +'"]').addClass('visible');
     // var time = message.last().find('#span').text();
 
-
 })
 
 
@@ -102,6 +101,8 @@ function inviaMessaggio (){
         $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
         // $('.conversation.visible').scrollTop(10000000)
         timechat(message);
+        anteprimaUltimoMess();
+
 
     };
 };
@@ -122,7 +123,7 @@ function risposta (){
     // $('.conversation.visible').scrollTop(10000000)
     timechat(message);
     // $('.conversation.visible').prev('.header-chat').find('.status').text('Online');
-
+    anteprimaUltimoMess();
 
 };
 
@@ -160,6 +161,14 @@ function timechat (message){
     var data = new Date($.now());
     var time = data.getHours() + ":" + data.getMinutes();
     message.last().find('#time').text(time);
+    var oraUltimoMess = message.last().find('#time').text();
+    $('.header-chat').find('.status').text('Ultimo accesso oggi alle' + oraUltimoMess);
 }
 
+
+function anteprimaUltimoMess (){
+    var ultimoMess = $('.conversation.visible').find('.message').last();
+    var testoUltimoMess = ultimoMess.find('p').text();
+    $('.conversation-preview.active').find('.status').text(testoUltimoMess);
+}
 // });
