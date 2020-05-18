@@ -1,4 +1,4 @@
-// $(document).ready(function(){
+$(document).ready(function(){
 
 // Invio messaggi al click dell'utente nel pulsante invia ( microfono )
 
@@ -16,12 +16,14 @@ $('#content-message').keypress(function(event){
 });
 // intercetto il pulsante invio della tastiera
 $('#text-search').keyup(function(){
+    cercaContatto();
     // se si preme invio
     if (event.which == 13) {
         // eseguo la funzione cerca contatto
         cercaContatto();
     }
 });
+
 
 // Cerca nome contatto
 
@@ -85,14 +87,28 @@ function inviaMessaggio (){
     if (contentMessage.trim() != '') {
         // copio l'elemento template
         // var message = $('.template-message .message.send').clone();
-        var message = $('.template-message .message').clone().addClass('send');
+
+        var source   = $("#entry-template").html();
+        var template = Handlebars.compile(source);
+
+        var context = {
+            message: contentMessage,
+            time: timechat(),
+            classeMessage: "send",
+            classeDropdown: "left"
+        };
+        var html = template(context);
+        $('.conversation.visible').append(html);
+
+
+        // var message = $('.template-message .message').clone().addClass('send');
         // inserisco il testo inserito nell'input dall'utente
 
-        message.find('.text').text(contentMessage);
+        // message.find('.text').text(contentMessage);
 
         // appendo il nuovo messaggio
-        $('.conversation.visible').append(message);
-        message.find('.dropdown').addClass('left');
+        // $('.conversation.visible').append(message);
+        // message.find('.dropdown').addClass('left');
         // svuoto l'input dopo aver inviato il messaggio
         $("#content-message").val("");
         // Imposto una risposta automatica dopo 1 secondo
@@ -100,7 +116,7 @@ function inviaMessaggio (){
         // Imposto lo scroll automatico alla conversazione attiva
         $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
         // $('.conversation.visible').scrollTop(10000000)
-        timechat(message);
+        // timechat(message);
         anteprimaUltimoMess();
 
 
@@ -111,20 +127,33 @@ function inviaMessaggio (){
 function risposta (){
     // creo una variabile risposta con il testo ok
     var risposta = "ok";
+
+    var source   = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = {
+        message: risposta,
+        time: timechat(),
+        classeMessage: "reply",
+        classeDropdown: "right"
+    };
+    var html = template(context);
+    $('.conversation.visible').append(html);
+
+
     // copio l'elemento messaggio di risposta dal template
-    var message = $('.template-message .message').clone().addClass('reply');
+    // var message = $('.template-message .message').clone().addClass('reply');
     // trovo l'elemento con la classe text e ci inserisco la risposta
-    message.find('.text').text(risposta);
+    // message.find('.text').text(risposta);
     // appendo la risposta
-    $('.conversation.visible').append(message);
-    message.find('.dropdown').addClass('right');
+    // $('.conversation.visible').append(message);
+    // message.find('.dropdown').addClass('right');
     // Imposto lo scroll automatico alla conversazione attiva
     $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
     // $('.conversation.visible').scrollTop(10000000)
-    timechat(message);
+    // timechat(message);
     // $('.conversation.visible').prev('.header-chat').find('.status').text('Online');
     anteprimaUltimoMess();
-
 };
 
 
@@ -157,12 +186,14 @@ function cercaContatto (){
 
 // Funzione ora esatta invio messaggio
 
-function timechat (message){
+function timechat (){
     var data = new Date($.now());
     var time = data.getHours() + ":" + data.getMinutes();
-    message.last().find('#time').text(time);
-    var oraUltimoMess = message.last().find('#time').text();
-    $('.header-chat').find('.status').text('Ultimo accesso oggi alle' + oraUltimoMess);
+    // message.last().find('#time').text(time);
+    // var oraUltimoMess = message.last().find('#time').text();
+    // $('.header-chat').find('.status').text('Ultimo accesso oggi alle' + oraUltimoMess);
+    return time;
+
 }
 
 
@@ -171,4 +202,4 @@ function anteprimaUltimoMess (){
     var testoUltimoMess = ultimoMess.find('p').text();
     $('.conversation-preview.active').find('.status').text(testoUltimoMess);
 }
-// });
+});

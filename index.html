@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/2a6dddd505.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     </head>
     <body>
         <div class="box-wrapper">
@@ -206,25 +207,21 @@
                 </div>
             </div>
         </div>
-        <!-- Div template -->
-        <div class="template-message">
-            <div class="message">
-                <p class="text"></p>
-                <span id="time"></span>
+        <script id="entry-template" type="text/x-handlebars-template">
+            <div class="message {{classeMessage}}">
+                <p class="text">{{message}}</p>
+                <span id="time">{{time}}</span>
                 <i class="fas fa-chevron-down"></i>
-                <div class="dropdown">
+                <div class="dropdown {{classeDropdown}}">
                     <ul>
                         <li>Message info</li>
                         <li id="delete-message">Delete message</li>
                     </ul>
                 </div>
             </div>
-            <!-- <div class="message reply">
-                <p class="text"></p>
-            </div> -->
-        </div>
-        <!-- Fine div template -->
+        </script>
         <script src="main.js"></script>
+
 
     </body>
 </html>
