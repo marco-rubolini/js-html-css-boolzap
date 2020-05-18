@@ -95,7 +95,7 @@ function inviaMessaggio (){
             message: contentMessage,
             time: timechat(),
             classeMessage: "send",
-            classeDropdown: "left"
+            classeDropdown: "left",
         };
         var html = template(context);
         $('.conversation.visible').append(html);
@@ -117,7 +117,7 @@ function inviaMessaggio (){
         $('.conversation.visible').scrollTop($('.conversation.visible')[0].scrollHeight);
         // $('.conversation.visible').scrollTop(10000000)
         // timechat(message);
-        anteprimaUltimoMess();
+        anteprimaUltimoMess(context);
 
 
     };
@@ -153,7 +153,7 @@ function risposta (){
     // $('.conversation.visible').scrollTop(10000000)
     // timechat(message);
     // $('.conversation.visible').prev('.header-chat').find('.status').text('Online');
-    anteprimaUltimoMess();
+    anteprimaUltimoMess(context);
 };
 
 
@@ -197,9 +197,12 @@ function timechat (){
 }
 
 
-function anteprimaUltimoMess (){
-    var ultimoMess = $('.conversation.visible').find('.message').last();
-    var testoUltimoMess = ultimoMess.find('p').text();
-    $('.conversation-preview.active').find('.status').text(testoUltimoMess);
+function anteprimaUltimoMess (context){
+    // var ultimoMess = $('.conversation.visible').find('.message').last();
+    // var testoUltimoMess = ultimoMess.find('p').text();
+    $('.conversation-preview.active').find('.status').text(context.message);
+    $('.conversation-preview.active').find('.time').text(context.time)
+    $('.header-chat').find('.status').text('Ultimo accesso oggi alle' + context.time)
 }
+
 });
